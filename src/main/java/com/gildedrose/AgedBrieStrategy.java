@@ -3,7 +3,7 @@ package com.gildedrose;
 public class AgedBrieStrategy implements ItemStrategy {
     @Override
     public void update(Item item) {
-        if (item.quality < 50) {
+        if (item.quality < MAXIMUM_QUALITY) {
             item.quality++;
         }
         item.sellIn--;
