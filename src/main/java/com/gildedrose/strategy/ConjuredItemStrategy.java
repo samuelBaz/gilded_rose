@@ -23,3 +23,4 @@ public class ConjuredItemStrategy implements ItemStrategy {
         }
     }
 }
+//explicar el proyecto, que es lo que se pidio, que es lo primero que se hizo y el patron que ocupamos and others pathern

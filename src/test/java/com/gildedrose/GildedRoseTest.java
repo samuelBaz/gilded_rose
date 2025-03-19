@@ -5,6 +5,48 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
+    GildedRose app;
+    Item[] items;
+
+    @Test
+    void normalProductsDegradesTwiceFastWhenExpires() {
+        items = new Item[] { new Item("Tomatoe", 0, 10)};
+        app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(8, app.items[0].quality, "La calidad de un producto normal se degada el doble cuando expira.");
+    }
+
+    @Test
+    void agedBrieContinuesIncreaseQualityEvenAfterExpired() {
+        items = new Item[] { new Item("Aged Brie", 0, 11)};
+        app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(12, app.items[0].quality, "La calidad de Aged Brie aumenta con el tiempo.");
+    }
+
+    @Test
+    void backstageQualityEqualsZeroWhenAfterExpired() {
+        items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 11)};
+        app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(0, app.items[0].quality, "La calidad de backstage se igual a zero cuando este expira.");
+    }
+
+    @Test
+    void sulfurasQualityNotUpdate() {
+        items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 0, 80)};
+        app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(80, app.items[0].quality, "La calidad de sulfuras no es inmutable.");
+    }
+
+    @Test
+    void normalProductsQualityIsNotNegative() {
+        items = new Item[] { new Item("Tomatoe", 0, 1)};
+        app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(0, app.items[0].quality, "La calidad de un producto no llega a ser negativo.");
+    }
 
     @Test
     void qualityShouldNotExceed50WhenIncrementing() {
