@@ -147,4 +147,28 @@ class GildedRoseTest {
         assertEquals(50, app.items[0].quality, "La calidad nunca debe superar 50.");
     }
 
+
+    @Test
+    void conjuredItemQualityShouldDecreaseNormallyBeforeSellIn() {
+        Item[] items = new Item[] { new Item("Conjured", 5, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(8, app.items[0].quality, "La calidad del artículo 'Conjured' debería disminuir en 2 puntos antes de la fecha de venta.");
+    }
+
+    @Test
+    void conjuredItemQualityShouldDecreaseTwiceAsFastAfterSellIn() {
+        Item[] items = new Item[] { new Item("Conjured", 0, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(6, app.items[0].quality, "La calidad del artículo 'Conjured' debería disminuir en 4 puntos después de la fecha de venta.");
+    }
+
+    @Test
+    void conjuredItemQualityShouldNotBeNegative() {
+        Item[] items = new Item[] { new Item("Conjured", 0, 1) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(0, app.items[0].quality, "La calidad del artículo 'Conjured' no debería ser negativa.");
+    }
 }
