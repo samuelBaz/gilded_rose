@@ -1,6 +1,8 @@
-package com.gildedrose;
+package com.gildedrose.strategy;
 
-public class BackstagePassesStrategy implements ItemStrategy {
+import com.gildedrose.Item;
+
+public class BackstagePassesItemStrategy implements ItemStrategy {
 
     @Override
     public void update(Item item) {

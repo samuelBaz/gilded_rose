@@ -1,6 +1,8 @@
-package com.gildedrose;
+package com.gildedrose.strategy;
 
-public class AgedBrieStrategy implements ItemStrategy {
+import com.gildedrose.Item;
+
+public class AgedBrieItemStrategy implements ItemStrategy {
     @Override
     public void update(Item item) {
         if (item.quality < MAXIMUM_QUALITY) {
